@@ -36,6 +36,18 @@ public class RestAssuredUtil {
 		}
 	}
 
+	public int getRecordSize(Response response) {
+		int size = 0;
+		try {
+			List<String> jsonResponse = response.jsonPath().getList("$");
+			size = jsonResponse.size();
+			return size;
+		} catch (Exception exception) {
+			log.error("user is getting an error while getting list of Values", exception.getMessage());
+			return size;
+		}
+	}
+
 	public String getValueOfOtherKeyFromRecord(String keyToGetRecord, String value, String keyToGetValueOf,
 			Response response) {
 		int count = 0;
@@ -53,7 +65,7 @@ public class RestAssuredUtil {
 			int valueOfKey = response.body().path("[" + count + "]." + keyToGetValueOf + "");
 			String castVslue = Integer.toString(valueOfKey);
 			return castVslue;
-			
+
 		} catch (Exception exception) {
 			log.error("user is getting an error while getting value of other key from record", exception.getMessage());
 			return null;
