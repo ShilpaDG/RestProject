@@ -24,7 +24,6 @@ public class UserBlog {
 	Response response = null;
 	private Logger log = LoggerFactory.getLogger(UserBlog.class);
 
-	
 	/**
 	 * To verify the email in the comment section of the specific user are in the
 	 * proper format Input: Valid UserName
