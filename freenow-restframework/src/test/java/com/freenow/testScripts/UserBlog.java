@@ -15,14 +15,14 @@ import com.freenow.utils.RestAssuredUtil;
 import io.restassured.response.Response;
 import junit.framework.Assert;
 
-public class UserBlog {
+public class UserBlog extends BaseClass{
 
 	public static String PROPERTIES_PATH = System.getProperty("user.dir") + File.separator + "src/test/resources/";
 	static PropertiesRead prop = new PropertiesRead(PROPERTIES_PATH + File.separator + "userBlog.properties");
 	RestAssuredUtil restAssuredUtil = new RestAssuredUtil();
 	CommonUtils commonUtils = new CommonUtils();
 	Response response = null;
-	private Logger log = LoggerFactory.getLogger(UserBlog.class);
+	//private Logger log = LoggerFactory.getLogger(UserBlog.class);
 
 	/**
 	 * To verify the email in the comment section of the specific user are in the
@@ -30,7 +30,7 @@ public class UserBlog {
 	 */
 	@Test
 	public void emailValidateForValidUser() {
-
+		log=extent.createTest("To get Post id lists by passing specific user Input: username");
 		List<Integer> postIdList = getPostIdListForSpeficUser(prop.getProperty("userNameValue"));
 		/* Validate email id By passing PostIdList */
 		validateEmailIdByPostIDList(postIdList);
@@ -42,7 +42,7 @@ public class UserBlog {
 	 */
 	@Test
 	public void emailValidateUserWithSpecialcharactor() {
-
+		log=extent.createTest("Email Validate user with special charactors");
 		List<Integer> postIdList = getPostIdListForSpeficUser(prop.getProperty("userNameSpecialCharactor"));
 		/* Validate email id By passing PostIdList */
 		validateEmailIdByPostIDList(postIdList);
@@ -53,7 +53,7 @@ public class UserBlog {
 	 */
 	@Test
 	public void emailValidateUserWithInValidUsername() {
-
+		log=extent.createTest("To verify the email for invalid user Input: Invalid user Name");
 		String userId;
 		/* Get list of Users */
 		response = commonUtils.getResponse(prop.getProperty("baseUtil"), prop.getProperty("getUserEndPointUrl"));
@@ -113,6 +113,7 @@ public class UserBlog {
 			for (String email : stringList) {
 				/* Get List of email ids */
 				log.info("List of email ids:" + email);
+				System.out.println("List of email ids:" + email);
 				emailpattren = commonUtils.isValidemailId(email);
 			}
 

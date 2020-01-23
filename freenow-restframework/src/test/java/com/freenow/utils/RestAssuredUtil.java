@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-//@Component("restAssuredUtil")
 public class RestAssuredUtil {
 
 	private Logger log = LoggerFactory.getLogger(RestAssuredUtil.class);
