@@ -11,8 +11,3 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-    steps:
-      - checkout
-      - run:
-          name: "Testng"
-          command: java org.testng.TestNG testng.xml
